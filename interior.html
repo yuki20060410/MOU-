@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店内</title>
+    <link rel="stylesheet" href="./css/style_interiro.css">
+</head>
+<body>
+    <header class="header-title">
+        <div class="text-block">
+            <p>カフェ＆ケーキ（ムー）</p>
+        </div>
+
+        <a href="index.php">
+            <img src="./images/homu.webp" alt="ホームボタン" class="home">
+        </a>
+        <span class="menu-links">
+            <a href="interior.html">店内</a>
+            <a href="exterior.html">外観</a>
+        </span>
+  </header>
+  <main>
+    <section id="interior">
+      <h2>店内</h2>
+      <p>青を基調とした清潔感ある店内</p>
+    <img src="./images/interior1.jpg" alt="内装" class="interior_img">
+    <img src="./images/interior2.jpg" alt="内装" class="interior_img">
+    <img src="./images/interior3.jpg" alt="内装" class="interior_img">
+    <img src="./images/interior4.jpg" alt="内装" class="interior_img">
+    </section>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+
+            <div class="image-box">
+
+            <!-- 左矢印 -->
+            <div class="arrow left"></div>
+
+            <!-- モーダル画像 -->
+            <img id="modalImage" class="modal-image">
+
+            <!-- 右矢印 -->
+            <div class="arrow right"></div>
+
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© カフェ＆ケーキ（ムー）</p>
+    <div class="back-to-top">
+       <a href="index.php">戻る</a>
+    </div>
+  </footer>
+    <script src="./js/interior.js"></script>
+</body>
+</html>

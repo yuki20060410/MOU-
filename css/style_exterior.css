@@ -1,0 +1,187 @@
+*{
+   caret-color: transparent;
+}
+
+/* ヘッダー全体 */
+.header-title {
+  display: flex;
+  justify-content: space-between; /* 左右に配置 */
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #fffaf5;
+  border-bottom: 2px solid #e0d2b6;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* 店名 */
+.text-block p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #5c4033;
+  margin: 0;
+}
+
+/* 右上のボタン群 */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ホームボタン */
+.home {
+  width: 40px;
+  height: auto;
+  transition: transform 0.3s;
+  margin-left: -205%;
+}
+.home:hover {
+  transform: scale(1.1);
+}
+
+/* 内装・外装リンク */
+.menu-links a {
+  text-decoration: none;
+  color: #5c4033;
+  font-weight: bold;
+  margin-left: 15px;
+  transition: color 0.3s;
+}
+
+.menu-links a:hover {
+  color: #a88763;
+}
+
+/* main部分：ヘッダーの固定分の余白を確保 */
+main {
+  padding-top: 100px;
+  text-align: center;
+}
+
+/* 外装画像を中央寄せ */
+.product-image {
+  max-width: 60%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/*ポップアップ*/
+#modal-container {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0, 0, 0, 0.8);
+z-index: 1000;
+justify-content: center;
+align-items: center;
+overflow: auto;
+}
+
+/* モーダル全体 */
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* 縦方向（画像→テキスト） */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 65vw;
+  max-height: 70vh;
+  margin: auto;
+  transform: translateY(0); /* 常に中央 */
+}
+
+#modal-container img {
+width: 100%;
+height: auto;    
+max-height: 70vh;
+object-fit: contain;
+border-radius: 10px;
+margin-top: -10%;
+}
+
+img.product-image {
+cursor: pointer;
+transition: transform 0.2s;
+}
+.close-btn{
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f4ede5;
+  color: #333;
+  margin-top: 50px;
+}
+
+/*「トップに戻る」ボタン*/
+.back-to-top {
+  text-align:right;
+  margin: 20px 0;
+}
+
+.back-to-top a {
+  display: inline-block;
+  background-color: #8b6f47; /* カフェ風のブラウン */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-to-top a:hover {
+  background-color: #a88763;
+  transform: translateY(-3px);
+}
+
+@media screen and (max-width: 768px) {
+  .header-title {
+    flex-direction: column; /* 縦に配置 */
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .product-image {
+    width: 90%;
+    height: auto;
+  }
+
+  .modal-content {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+
+  #modal-container img {
+    max-height: 60vh;
+  }
+}
+
+/* フェードイン効果 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
