@@ -16,8 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const arrowRight = modal.querySelector(".arrow.right");
 
   let currentIndex=0;
-
-  // 画像クリックイベントを付ける関数
+  
+  // -------------------------------
+  // 画像クリック → モーダルを開く
+  // -------------------------------
   function bindImageClick() {
     images.forEach((image, index) => {
       image.addEventListener("click", () => {
@@ -31,22 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   bindImageClick();
-
-  // -------------------------------
-  // 画像クリック → モーダルを開く
-  // -------------------------------
-  images.forEach((image, index) => {
-    image.addEventListener("click", () => {
-      currentIndex = index;
-
-      modalImage.src = image.src;
-      modalText.textContent = image.alt;
-      modalPrice.textContent = "価格: ¥" + image.dataset.price;
-
-      modal.style.display = "flex";
-    });
-  });
-  
 
   //メニューをクリックしたらフィルタ＋並び替え
   document.querySelectorAll(".menu-items .item").forEach(item => {

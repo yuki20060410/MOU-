@@ -1,17 +1,25 @@
 <!-- 材料モーダル -->
 <div id="ingredientsModal" class="modal">
-    <div class="modal-content">
-        <span id="ingredientsClose" class="close" onclick="closeIngredientsModal()">&times;</span>
-        <!-- 商品名 -->
-        <h2 id="modalName" class="modal-name"></h2>
-        <!-- 左矢印 -->
-      <div class="arrow left"></div>
-        <h2 class="zai">使用食材</h2>
-        <p id="modalMaterials"></p>
-        <!-- 右矢印 -->
-      <div class="arrow right"></div>
+  <div class="modal-content">
+    <span id="ingredientsClose" class="close"
+          onclick="closeIngredientsModal()">&times;</span>
+
+    <!-- 左上ブロック -->
+    <div class="top-left">
+      <h2 id="modalName" class="modal-name"></h2>
+      <img id="materialImage" class="material-image">
     </div>
+
+    <!-- 矢印（画像基準） -->
+    <div class="arrow left"></div>
+    <div class="arrow right"></div>
+
+    <!-- 中央表示 -->
+    <h2 class="zai">使用食材</h2>
+    <p id="modalMaterials"></p>
+  </div>
 </div>
+
 
 
 <script>
@@ -25,6 +33,8 @@
         },
         <?php endforeach; ?>
     ];
+
+    const modalImage = document.getElementById("materialImage");
 
     let productListSorted = [...productList]; // 並べ替え後の順に追従
     let currentIndex = 0;
@@ -44,15 +54,21 @@
 
     function openIngredientsModal(elm) {
         updateProductListOrder(); // 並べ替え後に更新
+        const card = elm.closest(".product-card");
+        const img = card.querySelector(".product-img");
+
         const personal_code = elm.dataset.id;
         currentIndex = productListSorted.findIndex(p => p.personal_code == personal_code);
         if (currentIndex < 0) currentIndex = 0;
+        modalImage.src = img.dataset.image; 
+        modalImage.alt = img.alt;
+
         updateModal();
         ingredientsModal.style.display = "flex";
     }
 
     function updateModal() {
-        const p = productListSorted[currentIndex]; // ← ここを productListSorted に
+        const p = productListSorted[currentIndex]; 
         const m1 = p.material1 || "材料なし";
         const m2 = p.material2 || "";
         document.getElementById("modalName").textContent = p.name;

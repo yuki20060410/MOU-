@@ -135,6 +135,7 @@ nav{
   padding: 0;        /* 不要なパディングを削除 */
   width: 100%;                 /* 横幅いっぱい */
   box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .menu-items .item {
@@ -331,27 +332,42 @@ nav{
 
 /*------------------------------------------material-------------------------------------*/
 
-/* 商品名を左上に固定表示 */
-#ingredientsModal .modal-name {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    margin: 0;
-    font-size: 18px;
-    font-weight: bold;
-}
-
 /* モーダル全体を中央寄せ */
 #ingredientsModal .modal-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* 横中央 */
-    justify-content: center; /* 縦中央 */
-    padding: 40px 20px;
-    min-height: 200px; /* 適宜調整 */
-    
+  position: relative;
+  padding: 50px 20px 30px;
+  min-height: 350px;
 }
+
+.top-left {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* 商品名を左上に固定表示 */
+#ingredientsModal .modal-name {
+  top: 10px;
+  left: 15px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+#ingredientsModal .material-image {
+  max-width: 150px;      /* ← 小さく */
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+
 
 /* 使用食材テキスト */
 #modalMaterials {
@@ -360,18 +376,23 @@ nav{
     line-height: 1.5;
     margin-top: 10%;
     max-width: 77%;
+    margin-left: 12%;
     word-wrap: break-word;    /* 長い単語も折り返す */
     word-break: break-word;   /* こちらも安全策 */
     white-space: normal;      /* nowrap を解除 */
 }
+
 .zai{
-  margin-top: -10%;
+  margin-top: 30%;  /* ← 左上（商品名＋画像）分 */
+  margin-left: 3%;
+  text-align: center;
 }
 
 /* 矢印共通 */
 #ingredientsModal .arrow {
-  cursor: pointer;
+  position: absolute;
   z-index: 10;
+  cursor: pointer;
 }
 
 /* 左矢印（←） */

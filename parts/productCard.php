@@ -1,7 +1,8 @@
 <section class="product-card" data-type="<?= htmlspecialchars($p['category'])?>">
-    <img src="<?= htmlspecialchars($p['image_path']) ?>"
+    <img src="images/<?= basename($p["image_path"]) ?>"
      alt="<?= htmlspecialchars($p['name']) ?>"
      class="product-img"
+     data-image="/webSaito/origin/images/<?= basename($p["image_path"]) ?>"
      data-price="<?= htmlspecialchars($p['price']) ?>">
 
 
