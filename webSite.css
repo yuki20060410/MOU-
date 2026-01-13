@@ -1,0 +1,692 @@
+*{
+  margin: 0;
+  padding: 0;
+  caret-color: transparent;
+}
+
+main {
+  margin-top: -100px; /* navの境界線ぶんを打ち消す */ 
+}
+
+/*---------------------------  -header----------------------------------------------------*/
+header{
+    background-color: #1255DA;
+    display: flex;
+    flex-direction: column; /* 縦方向に配置 */
+    align-items: center;
+     justify-content: flex-start; /* 上寄せに変更 */
+    overflow: hidden;   /* 念のため中の要素がはみ出さないようにする */
+    height: 600px; /* ヘッダーの高さを固定 */
+     padding-top: 20px; /* 少しだけ余白を足す */
+}
+
+.header-title{
+    flex-direction:row; /* ← PCでは横並び（文字が左） */
+    display: flex;          /* 横並びにする */
+    align-items: center;    /* 縦位置を中央に揃える */
+    gap: 0px;              /* ロゴと文字の間に余白 */
+    color: white;           /* 文字を白に */
+    font-size: 1.5rem;      /* 文字サイズ調整 */
+    text-align: right;
+    line-height:1.5;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 見やすくするための影 */
+}
+
+h1 { 
+    margin: 0;
+}
+
+
+.rogo{
+    width: 1000px;       /* 適度なロゴサイズ */
+    max-width: 80%;     /* 画面幅が狭いときは縮む */
+    min-width: 400px;
+    height: auto;       /* アスペクト比維持 */
+    object-fit: contain; /* 画像全体を表示して切れないようにする */
+    display: block;     /* 中央寄せにしやすく */
+    margin-top: -20%; /* ↑ 上方向に移動 */
+}
+
+#reloadBtn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+
+.home{
+  position: absolute;
+  right: 20px;
+  top: 10%;
+  transform: translateY(-50%);
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.home:hover {
+    transform: translateY(-50%) scale(1.1);
+    opacity: 0.8;
+
+}
+
+
+.text-block {
+  display: flex;
+  flex-direction: column; /* ← 縦に並べる！ */
+  align-items: flex-end; /* ← 右寄せ */
+  text-align: right;      /* 各行の文字を中央寄せ */
+  line-height: 1.3;
+  transform: translateX(-200px); /* ← さらにロゴ方向へ寄せる */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.menu-links{
+  position: absolute;   /* fixedではなくabsoluteに変更 */
+  top: 200px;            /* ヘッダー内での上位置 */
+  right: 10px;          /* 右端に寄せる */
+  display: flex;
+  flex-direction: column; /* 縦並び */
+  align-items: center;
+  gap: 10px;
+}
+
+.menu-links a {
+  display: block;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4); /* 半透明の背景（任意） */
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s; 
+}
+
+.menu-links a:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #1255DA;
+}
+
+.text-block p {
+  margin: 5px 0; /* 行の間の余白 */
+}
+/*-----------------------------------nav---------------------------------------------------*/
+nav{
+    background-color: white;
+    display: flex;
+    justify-content: center; /* 横方向中央 */
+    align-items: center;     /* 縦方向中央 */
+    height: 200px;
+    border-bottom: 3px solid #ccc;
+    transform: translateY(-150px);
+    font-size: 20px;
+}
+
+/*---------------------------------main--------------------------------------------------*/
+
+.menu-items {
+  display: flex;
+  flex-wrap: wrap;           /* 画面幅に応じて折り返す */
+  justify-content: space-evenly; /* 等間隔に配置 */
+  gap: 10px;                 /* 項目間の隙間 */
+  padding: 0;        /* 不要なパディングを削除 */
+  width: 100%;                 /* 横幅いっぱい */
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.menu-items .item {
+  user-select: none;   /* ← 文字として選択できなくなる */
+  flex: 0 0 calc(16.66% - 10px); /* 1行に6つ並ぶ幅を指定 */
+  padding: 10px 15px;
+  background-color: #f0c7c0;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  white-space: nowrap;
+  white-space: nowrap;     /* 長いテキストは折り返さない */
+  cursor: pointer;
+}
+
+/* ホバーでボタンっぽい反応 */
+.menu-items .item:hover {
+  background-color: #e7b3aa;
+  transform: translateY(-2px);
+}
+
+/* クリック時の凹むアニメ */
+.menu-items .item:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+
+/*------------------------------products-card--------------------------------------------*/
+.products {
+  display: flex;            /* 横並び */
+  flex-wrap: wrap;          /* 幅が足りなくなったら折り返す */
+  justify-content: center; /* 左寄せ、中央寄せしたい場合は center に変更 */
+  gap: 20px;                /* カード間の隙間 */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.product-card {
+  width: 100%;
+  max-width: 280px; /* 最大幅を制限 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.product-card .product-img {
+  width: 90%;
+  height: 200px;            /* 高さ固定 */
+  object-fit: cover;        /* カバーで縦横比維持 */
+  border-radius: 10px;
+}
+
+.product-card .product-name {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.product-card .ingredients-toggle {
+  font-size: 14px;
+  color: #0077cc;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: center;
+}
+
+.product-card .ingredients {
+  display: none;
+  font-size: 14px;
+  color: #444;
+  text-align: center;
+  margin-top: 5px;
+}
+
+
+
+.product-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;  /* または contain */
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+}
+
+/* モーダル背景 */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+
+/* モーダル枠 */
+.modal-content {
+  background: #fff;
+  width: 700px;
+  margin: 5% auto;
+  border-radius: 10px;
+  padding: 20px;
+  position: relative;
+}
+
+/* 閉じるボタン */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 25px;
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+/* ボックス（画像サイズに左右されない） */
+.image-box {
+  width: 600px;      /* ← 固定幅 */
+  height: 550px;     /* ← 固定高さ */
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 0 auto;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 画像がボックスに収まる */
+.modal-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* 矢印 */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  cursor: pointer;
+}
+
+/* 左矢印（←） */
+.arrow.left {
+  left: -25px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 20px solid #333;
+}
+
+/* 右矢印（→） */
+.arrow.right {
+  right: -25px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 20px solid #333;
+}
+
+.arrow:hover { opacity: 0.7; }
+
+
+/* モーダル内の商品名 */
+#modalText {
+  font-size: 24px;      /* 大きめに */
+  font-weight: bold;    /* 太字に */
+  text-align: center;
+  margin: 10px 0;
+}
+
+/* モーダル内の価格 */
+#modalPrice {
+  font-size: 20px;      /* 少し小さめでも十分目立つ */
+  color: #b85c5c;       /* 好みで色を変更 */
+  text-align: center;
+  margin: 5px 0 15px 0;
+  font-weight: bold;
+}
+
+
+
+
+/*------------------------------------------material-------------------------------------*/
+
+/* モーダル全体を中央寄せ */
+#ingredientsModal .modal-content {
+  position: relative;
+  padding: 50px 20px 30px;
+  min-height: 350px;
+}
+
+.top-left {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+/* 商品名を左上に固定表示 */
+#ingredientsModal .modal-name {
+  top: 10px;
+  left: 15px;
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+#ingredientsModal .material-image {
+  max-width: 150px;      /* ← 小さく */
+  max-height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  display: block;
+}
+
+
+
+/* 使用食材テキスト */
+#modalMaterials {
+    text-align: center; /* 横中央 */
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 10%;
+    max-width: 77%;
+    margin-left: 12%;
+    word-wrap: break-word;    /* 長い単語も折り返す */
+    word-break: break-word;   /* こちらも安全策 */
+    white-space: normal;      /* nowrap を解除 */
+}
+
+.zai{
+  margin-top: 30%;  /* ← 左上（商品名＋画像）分 */
+  margin-left: 3%;
+  text-align: center;
+}
+
+/* 矢印共通 */
+#ingredientsModal .arrow {
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+}
+
+/* 左矢印（←） */
+#ingredientsModal .arrow.left {
+  left: -25px; /* モーダルの左外に出す */
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 20px solid #0077cc; /* 矢印色 */
+}
+
+/* 右矢印（→） */
+#ingredientsModal .arrow.right {
+  right: -25px; /* モーダルの右外に出す */
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 20px solid #0077cc; /* 矢印色 */
+}
+
+/* ホバー時の色変更 */
+#ingredientsModal .arrow:hover {
+  border-right-color: #0077cc;
+  border-left-color: #0077cc;
+  transition: all 0.2s;
+}
+
+
+
+
+
+
+
+/*---------------------------------------footer--------------------------------------------*/
+.access {
+  background-color: #f5f5f5;
+  border-top: 3px solid #ccc;
+  padding: 40px 20px 0; /* ← 下の余白を0に */
+  text-align: center;
+  color: #333;
+  font-family: "Yu Gothic", sans-serif;
+  margin: 0; /* ← セクション下の余白を消す */
+}
+
+.access h2 {
+  font-size: 28px;
+  color: #b85c5c;
+  margin-bottom: 30px;
+}
+
+.access-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.access-photo img {
+  width: 350px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  object-fit: cover;
+}
+
+.access-info {
+  max-width: 400px;
+  text-align: left;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+
+
+.access-info strong {
+  color: #444;
+}
+
+.access-info ul {
+  list-style-type: disc;
+  margin: 5px 0 10px 20px;
+}
+
+.insta {
+  color: #E1306C;
+  font-weight: bold;
+}
+
+
+
+/* お問い合わせ */
+.contact-section {
+  margin-top: 40px;
+  max-width: 300px;
+  text-align: center;
+  margin-top: -10px;
+}
+
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+}
+
+.qr img {
+  width: 250px;
+  height: 250px;
+   border-radius: 20%;
+}
+
+.sns{
+  margin-top: -20px;
+}
+
+/* Instagramボタン */
+.insta-btn {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  
+}
+
+.insta-btn i {
+  margin-right: 8px;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+/* 一番下のロゴ */
+.access-logo-bottom {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+.access-logo-bottom img {
+   width: 1000px;       /* 適度なロゴサイズ */
+    max-width: 80%;     /* 画面幅が狭いときは縮む */
+    min-width: 400px;
+    height: auto;       /* アスペクト比維持 */
+    object-fit: contain; /* 画像全体を表示して切れないようにする */
+    display: block;     /* 中央寄せにしやすく */
+    margin: 0;
+    padding: 0;
+    
+}
+
+/*「トップに戻る」ボタン*/
+.back-to-top {
+  text-align:right;
+  margin: 20px 0;
+}
+
+.back-to-top a {
+  display: inline-block;
+  background-color: #8b6f47; /* カフェ風のブラウン */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-to-top a:hover {
+  background-color: #a88763;
+  transform: translateY(-3px);
+}
+
+
+
+/*--------------------------------------スマホ画面------------------------------------*/
+
+/* 📱 画面幅が小さくなったら縦並びに変更 */
+@media (max-width: 800px) {
+  .header-title {
+    flex-direction: column; /* ← 縦並びに！ */
+    gap: 20px;
+    text-align: center;
+  }
+
+  .text-block {
+    transform: none; /* 位置調整をリセット */
+  }
+
+  .rogo {
+    max-width: 70%;
+    min-width: 200px;
+    margin-top: 50px;
+    margin-left: 15%;
+  }
+}
+
+@media (max-width: 500px) {
+  .menu-items .item {
+    flex: 0 0 calc(33.33% - 10px); /* 画面狭い場合は1行2つずつ */
+  }
+}
+
+/* ▼▼ スマホ（390px〜450px）向け最適化 ▼▼ */
+@media (max-width: 480px) {
+
+  /* 商品一覧：間隔縮小してスマホで見やすく */
+  .products {
+    gap: 10px;
+    justify-content: center;
+  }
+
+  /* 商品カード：スマホで2列 */
+  .product-card {
+    flex: 0 0 calc(50% - 10px);
+    max-width: 180px;
+    padding: 8px;
+  }
+
+  /* カード画像をスマホ向けに縮小 */
+  .product-card .product-img {
+    width: 100%;
+    height: 140px;
+  }
+
+  /* モーダル枠：スマホ画面いっぱい寄り */
+  .modal-content {
+    width: 75%;
+    height: 55%;
+    margin: 20% auto;
+    padding: 10px;
+  }
+
+  /* 画像ボックス：スマホで縦長にならないよう高さ調整 */
+  .image-box {
+    width: 80%;
+    height: 300px;     /* ← スマホ向けの最適値（固定） */
+    padding: 10px;
+    position: relative;
+  }
+
+  /* モーダル画像 */
+  .modal-image {
+    max-width:  75%;
+    max-height: 80%;
+  }
+
+  /* 左矢印（画像ボックスの外側に出ない） */
+  .arrow.left {
+    left: 5px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 20px solid #333;
+  }
+
+  /* 右矢印 */
+  .arrow.right {
+    right: 5px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid #333;
+  }
+
+  /* 閉じるボタンを右下へ */
+  .close {
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+    font-size: 22px;
+  }
+
+  /* 商品名（モーダル） */
+  #modalText {
+    font-size: 18px;
+  }
+
+  /* 価格（モーダル） */
+  #modalPrice {
+    font-size: 16px;
+  }
+
+  #modalMaterials {
+      max-width: 85%;
+        font-size: 11px; /* 小さくする */
+    }
+
+  #modalMaterials{
+    font-size: 14px;
+  }
+}
