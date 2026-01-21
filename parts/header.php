@@ -26,7 +26,7 @@
         <a href="./exterior.html">外観</a>
     </span>
 </header>
- <nav>
-        今の限定のメニューなど紹介する場<br>
-        例（クリスマスケーキ 予約受け付け中）
+ <nav id="specialMenu">
+        今の限定のメニューなど紹介する場
+        <span id="christmasBtn">例(クリスマスケーキ</span>予約受け付け中)
 </nav>

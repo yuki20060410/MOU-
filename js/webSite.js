@@ -113,8 +113,82 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" || e.key === "Enter") closeModal.click();
   });
 
+
+  
+
+  //クリスマスケーキを押したら名前えに含まれている画像が先頭に来る
+  document.getElementById("specialMenu").addEventListener("click", () => {
+
+    const keyword = "クリスマス";
+
+    const list = document.querySelector(".products");
+    const cards = Array.from(list.querySelectorAll(".product-card"));
+
+    const matched = [];
+    const others = [];
+
+    cards.forEach(card => {
+      const name = card.querySelector(".product-name").textContent;
+      if (name.includes(keyword)) {
+        matched.push(card);
+      } else {
+        others.push(card);
+      }
+    });
+
+    // 先頭に「keyword」を含む商品
+    [...matched, ...others].forEach(card => list.appendChild(card));
+
+    //並び替え後に再取得
+    images = Array.from(document.querySelectorAll(".product-img"));
+    bindImageClick();
+    
+    const currentSrc = modalImage.src;
+    const newIndex = images.findIndex(img => img.src === currentSrc);
+
+    currentIndex = newIndex !== -1 ? newIndex : 0;
+  });
+  
+  //--------------------------------
+  // スマホ スワイプ対応（画像スライド）
+  // -------------------------------
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  // スワイプ対象は「画像」
+  modalImage.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  modalImage.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const diff = touchStartX - touchEndX;
+
+    // 少しのタップは無視（誤作動防止）
+    if (Math.abs(diff) < 40) return;
+
+    if (diff > 0) {
+      // ← 左にスワイプ → 次へ
+      currentIndex = (currentIndex + 1) % images.length;
+    } else {
+      // → 右にスワイプ → 前へ
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+    }
+
+    modalImage.src = images[currentIndex].src;
+    modalText.textContent = images[currentIndex].alt;
+    modalPrice.textContent =
+      "価格: ¥" + images[currentIndex].dataset.price;
+  }
+
 });
 
 document.getElementById("reloadBtn").addEventListener("click", () => {
   location.reload();
 });
+
+

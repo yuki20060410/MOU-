@@ -114,16 +114,43 @@ h1 {
   margin: 5px 0; /* 行の間の余白 */
 }
 /*-----------------------------------nav---------------------------------------------------*/
-nav{
-    background-color: white;
-    display: flex;
-    justify-content: center; /* 横方向中央 */
-    align-items: center;     /* 縦方向中央 */
-    height: 200px;
-    border-bottom: 3px solid #ccc;
-    transform: translateY(-150px);
-    font-size: 20px;
+nav {
+  background-color: white;
+  display: flex;
+  flex-direction: column;       /* ← 縦並び */
+  justify-content: center;       /* 縦方向中央 */
+  align-items: center;           /* 横方向中央 */
+  height: 200px;
+  border-bottom: 3px solid #ccc;
+  transform: translateY(-150px);
+  font-size: 20px;
+  line-height: 1.6;              /* ← 行間を固定 */
+  text-align: center;
 }
+
+/* クリック可能部分 */
+#christmasBtn {
+  display: inline-flex;          /* ← 高さを揃える */
+  align-items: center;
+  cursor: pointer;
+  color: #e60023;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 20px;               /* ← 明示的に揃える */
+  line-height: 1.6;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+#christmasBtn:hover {
+  color: #b00020;
+}
+
+#christmasBtn:active {
+  transform: scale(0.97);
+}
+
+
+
 
 /*---------------------------------main--------------------------------------------------*/
 
@@ -187,6 +214,12 @@ nav{
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   padding: 10px;
   box-sizing: border-box;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.product-card.is-moving {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .product-card .product-img {
@@ -393,6 +426,7 @@ nav{
   position: absolute;
   z-index: 10;
   cursor: pointer;
+
 }
 
 /* 左矢印（←） */
@@ -419,7 +453,30 @@ nav{
 }
 
 
+/*-----------------------------allergies--------------------------------------------     */
+/* アレルギー全体 */
+.allergy-area {
+  margin-top: 20px;      /* 使用食材との間隔 */
+  text-align: center;
+  margin-top: 10%;
+}
 
+/* タイトル */
+.allergy-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  margin-left: 3%;
+}
+
+/* アレルギー内容 */
+.allergy-list {
+  font-size: 20px;
+  color: #c62828;        /* アレルギーは赤系 */
+  font-weight: 600;
+  word-break: break-word;
+  margin-left: 3%;
+}
 
 
 
@@ -681,12 +738,51 @@ nav{
     font-size: 16px;
   }
 
-  #modalMaterials {
-      max-width: 85%;
-        font-size: 11px; /* 小さくする */
-    }
 
-  #modalMaterials{
-    font-size: 14px;
+
+  /*        material     */
+
+  /* ===== スマホ時のみ ===== */
+@media (max-width: 768px) {
+
+  #ingredientsModal .modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  /* 使用食材 見出しを下へ */
+  .zai {
+    margin-top: auto;   /* 下に押し下げる */
+    text-align: center;
+    font-size: 18px;
+    margin-top: 70%;
+  }
+
+  /* 使用食材テキスト */
+  #modalMaterials {
+    margin-top: 6px;
+    margin-bottom: 14px;
+    text-align: center;
+    font-size: 13px;
+    max-width: 90%;
+  }
+  /* アレルギー */
+  .allergy-area {
+    margin-top: 18px;
+  }
+
+  .allergy-title {
+    font-size: 14px;
+    white-space: nowrap;      /* 折り返し禁止 */
+  }
+
+  .allergy-list {
+    font-size: 14px;
+    white-space: nowrap;      /* 折り返し禁止 */
+    overflow: hidden;         /* はみ出し非表示 */
+
+  }
+}
+
 }

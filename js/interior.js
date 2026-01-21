@@ -68,4 +68,39 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" || e.key === "Enter") closeModal.click();
   });
 
+
+  
+  //--------------------------------
+  // スマホ スワイプ対応（画像スライド）
+  // -------------------------------
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  // スワイプ対象は「画像」
+  modalImage.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  modalImage.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, { passive: true });
+
+  function handleSwipe() {
+    const diff = touchStartX - touchEndX;
+
+    // 少しのタップは無視（誤作動防止）
+    if (Math.abs(diff) < 40) return;
+
+    if (diff > 0) {
+      // ← 左にスワイプ → 次へ
+      currentIndex = (currentIndex + 1) % images.length;
+    } else {
+      // → 右にスワイプ → 前へ
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+    }
+
+    modalImage.src = images[currentIndex].src;
+
+  }
 });

@@ -10,6 +10,9 @@ $sql ="
 
 $stmt = $pdo->query($sql);
 $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->query("SELECT allergy_name FROM allergies ");
+$allergyMaster = $stmt->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
 <?php include 'parts/header.php'; ?>
@@ -24,3 +27,4 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include 'parts/material.php'; ?>
 </main>
 <?php include 'parts/footer.php'; ?>
+
