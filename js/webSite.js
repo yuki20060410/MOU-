@@ -187,8 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-document.getElementById("reloadBtn").addEventListener("click", () => {
-  location.reload();
-});
+
 
 

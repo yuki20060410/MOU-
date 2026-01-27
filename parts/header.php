@@ -17,9 +17,10 @@
     <div class="text-block">
         <p>カフェ＆ケーキラボ　ムー</p>
     </div>
-    <button id="reloadBtn">
+    <a href="./login/login.php">
         <img src="./images/homu.webp" alt="ホームボタン" class="home">
-    </button>
+    </a>
+
 
     <span class="menu-links">
         <a href="./interior.html">店内</a>
