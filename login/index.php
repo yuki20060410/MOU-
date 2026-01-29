@@ -82,6 +82,16 @@ $products_login = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <p><a href="logout.php">ログアウト</a></p>
     <p><a href="../index.php">ホームに戻る</a></p>
     </footer>
+
+    <!-- 画像拡大モーダル -->
+<div id="modal" class="modal">
+  <span class="close-btn">×</span>
+
+  <button id="prevBtn" class="nav-btn prev">‹</button>
+  <img id="modalImg">
+  <button id="nextBtn" class="nav-btn next">›</button>
+</div>
+
     
     <script src="../js/edit.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>

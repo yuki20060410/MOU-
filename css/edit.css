@@ -1,0 +1,365 @@
+/* edit.css - 商品編集専用スタイル */
+
+.edit-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.edit-title {
+  text-align: center;
+  font-size: 26px;
+  color: #1255DA;
+  margin-bottom: 30px;
+}
+
+.edit-form {
+  background: #fff;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.edit-form input[type="text"],
+.edit-form input[type="number"],
+.edit-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+}
+
+#preview {
+  display: block;
+  margin: 15px auto;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+#imageStatus {
+  text-align: center;
+  background: #fff3cd;
+  color: #856404;
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin: 8px auto;
+  font-weight: bold;
+}
+
+.edit-form button {
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#resetImageBtn {
+  background: #ccc;
+  color: #333;
+  margin: 10px auto;
+  display: block;
+}
+
+#resetImageBtn:hover {
+  background: #b5b5b5;
+}
+
+.edit-form button[type="submit"] {
+  background: #1255DA;
+  color: #fff;
+  margin: 20px auto 0;
+  display: block;
+}
+
+.edit-form button[type="submit"]:hover {
+  background: #0f46b8;
+}
+
+
+
+/*----------- ページ全体を中央揃え --------------*/
+form {
+  display: flex;
+  flex-direction: column;  /* 縦に並べる */
+  align-items: center;     /* 水平方向中央揃え */
+  justify-content: center; /* 垂直方向中央揃え（必要なら） */
+  gap: 10px;               /* 入力間の余白 */
+  margin: 50px auto;       /* 上下余白 + 横中央 */
+  padding: 20px;
+  max-width: 400px;        /* フォームの最大幅 */
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 入力欄を幅いっぱいに */
+form input,
+form button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* ボタン */
+form button {
+  background-color: #1255DA;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+form button:hover {
+  background-color: #0f46b8;
+}
+
+
+
+
+/*---------------商品一覧の横並び-------------------------*/
+.products {
+  display: flex;
+  flex-wrap: wrap;           /* 幅が足りないとき折り返す */
+  justify-content: center;   /* 中央揃え */
+  gap: 20px;                 /* カード間の余白 */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.product-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  width: 250px;              /* 固定幅 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: transform 0.3s;
+}
+
+
+
+.product-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 14px;
+  color: #b85c5c;
+  margin-bottom: 10px;
+}
+
+
+/*----------編集・削除ボタンを横並びに-----------*/
+.product-actions {
+  display: flex;
+  justify-content: center;  /* ボタン中央寄せ */
+  gap: 10px;                /* ボタン間のスペース */
+  margin-top: 10px;
+}
+
+.product-actions button,
+.product-actions a {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  transition: 0.2s;
+}
+
+.product-actions .edit-btn {
+  background-color: #1255DA;
+}
+
+.product-actions .edit-btn:hover {
+  background-color: #0f46b8;
+}
+
+.product-actions .delete-btn {
+  background-color: #d9534f;
+}
+
+.product-actions .delete-btn:hover {
+  background-color: #c9302c;
+}
+
+
+
+
+/* ===== 画像拡大モーダル ===== */
+.image-modal {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.image-modal img {
+  max-width: 95%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-size: 34px;
+  color: white;
+  cursor: pointer;
+}
+
+.image-modal img {
+  touch-action: pan-y;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+}
+
+/* 左右ボタン */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nav-btn.prev {
+  left: 15px;
+}
+
+.nav-btn.next {
+  right: 15px;
+}
+
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= スマホ対応 ================= */
+@media (max-width: 480px) {
+
+  /* ページ余白を減らす */
+  .edit-page {
+    padding: 8px;
+    margin: 0;
+  }
+
+  /* タイトル */
+  .edit-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* フォームを画面いっぱいに */
+  form {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  form input,
+  form button {
+    font-size: 16px; /* iOS拡大防止 */
+  }
+
+  /* ===== 商品一覧を縦1列に ===== */
+  .products {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .product-card {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .product-img {
+    height: 160px;
+  }
+
+  .product-name {
+    font-size: 15px;
+  }
+
+  .product-price {
+    font-size: 14px;
+  }
+
+  /* ===== ボタンを押しやすく ===== */
+  .product-actions {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .product-actions a {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+  }
+}
+

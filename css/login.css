@@ -1,0 +1,53 @@
+/* 全体リセット */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+/* 背景 */
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ログインカード */
+.login-card {
+  background: #fff;
+  padding: 40px 32px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+}
+
+/* タイトル */
+.login-card h1 {
+  font-size: 20px;
+  margin-bottom: 24px;
+  color: #333;
+}
+
+/* Googleボタン余白 */
+.g_id_signin {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* ホームリンク */
+.login-card a {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
