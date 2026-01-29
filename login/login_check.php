@@ -1,34 +1,57 @@
 <?php
+
 session_start();
 
-$pdo = new PDO(
-  'mysql:host=localhost;dbname=webSite_db;charset=utf8',
-  'webSite',
-  'yuki',
-  [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
+
+// すでにログインしているならホームへ
+if (isset($_SESSION['user'])) {
+    header('Location: index.php');
+    exit;
+}
+
+$client = new Google_Client();
+
+/**
+ * Google OAuth 認証情報（JSON）
+ * ※ Web公開ディレクトリ外を推奨
+ */
+$client->setAuthConfig(
+    __DIR__ . '/../../config/google_oauth.json'
 );
 
-$email    = $_POST['email'] ?? '';
-$password = $_POST['password'] ?? '';
+/**
+ * Google Cloud Console に登録したものと
+ * 完全一致させる
+ */
+$client->setRedirectUri(
+    'http://localhost/webSaito/origin/login/callback.php'
+);
 
-if ($email === '' || $password === '') {
-  exit('メールアドレスとパスワードを入力してください');
-}
+/**
+ * 取得するスコープ
+ */
+$client->setScopes([
+    'openid',
+    'email',
+    'profile'
+]);
 
-$sql = "SELECT id, username, password FROM users WHERE email = ?";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$email]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+/**
+ * CSRF 対策用 state
+ */
+$state = bin2hex(random_bytes(16));
+$_SESSION['oauth2state'] = $state;
+$client->setState($state);
 
-if ($user && password_verify($password, $user['password'])) {
-  // ログイン成功
-  $_SESSION['user_id'] = $user['id'];
-  $_SESSION['username'] = $user['username'];
-
-  header("Location: index.php");
-  exit;
-} else {
-  // 失敗時
-  header("Location: login.php?error=1");
-  exit;
-}
+/**
+ * Google ログイン画面へリダイレクト
+ */
+$authUrl = $client->createAuthUrl();
+header('Location: ' . filter_var($authUrl, FILTER_SANITIZE_URL));
+exit;

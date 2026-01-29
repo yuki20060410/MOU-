@@ -1,8 +1,15 @@
 <?php
 session_start();
 
+header('Cache-Control: no-store, no-cache, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
+
+
+
 // すでにログイン済みならサイトへ
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['user'])) {
   header("Location: index.php");
   exit;
 }
@@ -12,16 +19,38 @@ if (isset($_SESSION['user_id'])) {
 <?php endif; ?>
 
 
-<h2>ログイン</h2>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+<div id="g_id_onload"
+    data-client_id="579961042132-vpho1shu2mfcehdss1fn3ok0c3kcf1ej.apps.googleusercontent.com"
+    data-login_uri="http://localhost/webSaito/origin/login/callback.php"
+    data-auto_prompt="false">
+</div>
 
-<form action="login_check.php" method="post">
-  <input type="email" name="email" placeholder="メール" required>
-  <input type="password" name="password" placeholder="パスワード" required>
-  <button type="submit">ログイン</button>
-</form>
+<div class="g_id_signin"
+    data-type="standard"
+    data-size="large"
+    data-theme="outline"
+    data-text="signin_with"
+    data-shape="rectangular"
+    data-logo_alignment="left">
+</div>
 
-<p>
-  <a href="register.php">新規登録はこちら</a>
-</p>
+
+
 
 <p><a href="../index.php">ホームに戻る</a></p>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+
+
+</body>
+</html>
+
