@@ -72,7 +72,7 @@ foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
     <span class="site-name">カフェ＆ケーキラボ　ムー</span>
     <div class="user-info">
         <?php if ($picture): ?>
-            <img src="<?= $picture ?>" alt="プロフィール画像">
+            <img src="<?= $picture ?>" alt="プロフィール画像" referrerpolicy="no-referrer">
         <?php endif; ?>
         <span class="user-name"><?= $username ?> さん</span>
         <a href="logout.php" class="logout-btn">ログアウト</a>
