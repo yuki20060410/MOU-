@@ -26,28 +26,32 @@
   </div>
 </div>
 
+<?php
+
+$base = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+    ? "/images/"
+    : "/webSaito/origin/images/";
+?>
 
 <script>
   window.productList = <?= json_encode(
-    array_map(function ($p) {
+    array_map(function ($p) use ($base) {   // ← use ($base) を追加
       return [
         'personal_code' => $p['personal_code'],
         'name'          => $p['name'],
         'material1'     => $p['material1'] ?? '',
         'material2'     => $p['material2'] ?? '',
-        'image'         => "../origin/images/" . basename($p['image_path'])
+        'image'         => $base . basename($p['image_path'])
       ];
     }, $product),
     JSON_UNESCAPED_UNICODE
   ) ?>;
 
-
   window.allergyMaster = <?= json_encode($allergyMaster, JSON_UNESCAPED_UNICODE) ?>;
 
-  //アレルギー抽出用の JS 関数を追加
   function extractAllergiesJS(materialText, allergyMaster) {
-  return allergyMaster.filter(allergy =>
-    materialText.includes(allergy)
-  );
-}
+    return allergyMaster.filter(allergy =>
+      materialText.includes(allergy)
+    );
+  }
 </script>
