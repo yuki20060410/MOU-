@@ -10,10 +10,15 @@ header('Expires: 0');
 
 
 // すでにログインしているならホームへ
+// if (isset($_SESSION['user'])) {
+//     header('Location: index.php');
+//     exit;
+// }
 if (isset($_SESSION['user'])) {
-    header('Location: index.php');
+    header('Location: analytics.php');
     exit;
 }
+
 
 $client = new Google_Client();
 
