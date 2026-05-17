@@ -1,5 +1,11 @@
 <?php
+// ===== 訪問者トラッキング（追加した2行） =====
+require_once 'lib/visitor_tracker.php';
+
 $pdo = new PDO('mysql:host=localhost;dbname=webSite_db;charset=utf8', 'webSite', 'yuki');
+
+// ===== 訪問記録（追加した1行） =====
+recordVisit($pdo, '/');
 
 $sql ="
         SELECT P.*, M.material1, M.material2 
@@ -27,4 +33,3 @@ $allergyMaster = $stmt->fetchAll(PDO::FETCH_COLUMN);
     <?php include 'parts/material.php'; ?>
 </main>
 <?php include 'parts/footer.php'; ?>
-
