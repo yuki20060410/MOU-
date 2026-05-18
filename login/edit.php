@@ -10,7 +10,7 @@ if (!isset($_SESSION['user'])) {
   exit;
 }
 
-require_once __DIR__ . '/../../lib/db.php';
+require_once __DIR__ . '/../lib/db.php';
 
 $id = $_GET['id'] ?? '';
 if ($id === '') exit('不正なアクセス');
