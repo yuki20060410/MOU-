@@ -1,7 +1,10 @@
 <?php
 session_start();
 // 追加
-$env = parse_ini_file('/var/www/.env');
+$envPath = file_exists('/var/www/.env')
+    ? '/var/www/.env'
+    : __DIR__ . '/../../.env';
+$env = parse_ini_file($envPath);
 $googleClientId = $env['GOOGLE_CLIENT_ID'];
 
 header('Cache-Control: no-store, no-cache, must-revalidate');

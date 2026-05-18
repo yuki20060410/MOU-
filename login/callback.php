@@ -12,7 +12,10 @@ if (empty($_POST['credential'])) {
 
 
 // 修正後
-$env = parse_ini_file('/var/www/.env');
+$envPath = file_exists('/var/www/.env')
+    ? '/var/www/.env'
+    : __DIR__ . '/../../.env';
+$env = parse_ini_file($envPath);
 $client = new Google_Client([
     'client_id' => $env['GOOGLE_CLIENT_ID'],
 ]);
