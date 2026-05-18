@@ -3,7 +3,7 @@
 require_once 'lib/visitor_tracker.php';
 
 // これだけでOK。$pdoがそのまま使える
-require_once __DIR__ . '/../lib/db.php';
+require_once __DIR__ . '/lib/db.php';
 
 // ===== 訪問記録（追加した1行） =====
 recordVisit($pdo, '/');
