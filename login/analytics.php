@@ -16,12 +16,7 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-$pdo = new PDO(
-    'mysql:host=localhost;dbname=webSite_db;charset=utf8',
-    'webSite',
-    'yuki',
-    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-);
+require_once __DIR__ . '/../../lib/db.php';
 
 // ---- 期間フィルター -------------------------------------------
 $range = $_GET['range'] ?? '30';  // 日数
