@@ -9,8 +9,12 @@ if (empty($_POST['credential'])) {
     exit('不正なリクエストです');
 }
 
+
+
+// 修正後
+$env = parse_ini_file('/var/www/.env');
 $client = new Google_Client([
-    'client_id' => '579961042132-vpho1shu2mfcehdss1fn3ok0c3kcf1ej.apps.googleusercontent.com',
+    'client_id' => $env['GOOGLE_CLIENT_ID'],
 ]);
 
 $payload = $client->verifyIdToken($_POST['credential']);

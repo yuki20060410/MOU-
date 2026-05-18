@@ -1,5 +1,8 @@
 <?php
 session_start();
+// 追加
+$env = parse_ini_file('/var/www/.env');
+$googleClientId = $env['GOOGLE_CLIENT_ID'];
 
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Pragma: no-cache');
@@ -33,7 +36,7 @@ if (isset($_SESSION['user'])) {
 <div class="login-card">
     <h1>ログイン</h1>
     <div id="g_id_onload"
-        data-client_id="579961042132-vpho1shu2mfcehdss1fn3ok0c3kcf1ej.apps.googleusercontent.com"
+        data-client_id="<?= htmlspecialchars($googleClientId) ?>"
         data-login_uri="http://localhost/webSaito/origin/login/callback.php"
         data-auto_prompt="false">
     </div>
