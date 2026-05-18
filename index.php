@@ -2,7 +2,8 @@
 // ===== 訪問者トラッキング（追加した2行） =====
 require_once 'lib/visitor_tracker.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=webSite_db;charset=utf8', 'webSite', 'yuki');
+// これだけでOK。$pdoがそのまま使える
+require_once __DIR__ . '/../lib/db.php';
 
 // ===== 訪問記録（追加した1行） =====
 recordVisit($pdo, '/');
