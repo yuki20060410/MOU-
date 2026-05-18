@@ -35,5 +35,8 @@ $_SESSION['user'] = [
     'picture'   => $payload['picture'],
 ];
 
+// ここを追加 ↓
+session_regenerate_id(true);
+
 header('Location: index.php');
 exit;
